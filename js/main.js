@@ -5,10 +5,12 @@ var api = {
 $('.modal').modal();
 
 var $temas = $("#temas");
+var $filtrar = $("#filtrar");
 
 var cargarPagina = function(){
 	cargarTopics();
 	$("#guardar").click(agregarTopic);
+	$(document).on("click", $filtrar, filtrarTopic);
 
 };
 
@@ -56,5 +58,12 @@ var plantilla = '<tr data-clave="__id__">' +
                    	'<td>__respuestas__</td>' +
                  '</tr>';
 
+var filtrarTopic = function (topic) {
+//alert("Filtrando tema");
+var $filtro = $("#filtro").val();
+var contenido = topic.content;
+
+
+};
 
 $(document).ready(cargarPagina);
