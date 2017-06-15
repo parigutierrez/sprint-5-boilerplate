@@ -4,15 +4,58 @@
 <html lang="es">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/materialize.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <title>FORO</title>
   </head>
   <body>
 
-    <h1>Aqui van todos los temas</h1>
+    <h1 class="center-align">- EL FORO -</h1>
+    <a class="waves-effect waves-light btn" href="#crear">+ Crear Tema</a>
+
+    <table class="striped responsive-table">
+      <thead>
+        <th>Tema</th>
+        <th>Autor</th>
+        <th>Respuestas</th>
+      </thead>
+      <tbody id="temas">
+         
+      </tbody>
+    </table>
+
+
+  <!-- Modal Structure -->
+  <div id="crear" class="modal">
+    <div class="modal-content">
+      <div class="row">
+          <form id="add-form" class="col s12">
+            <div class="row">
+              <div class="input-field col s6">
+                <input id="autor" type="text" class="validate">
+                <label for="icon_prefix">Nombre
+              </div>
+              <div class="input-field col s12">
+                <textarea id="mensaje" type="tel" class="validate">
+                </textarea>
+                <label for="icon_telephone">Mensaje
+              </div>
+            </div>
+          </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Crear Tema</a>
+    </div>
+  </div>
+
+    
+        
     
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
-    
+    <script src="js/materialize.min.js"></script>
     <script src="js/functions.js"></script>
     <script src="js/main.js"></script>
     
