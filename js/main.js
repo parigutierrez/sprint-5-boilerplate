@@ -8,7 +8,7 @@ var $temas = $("#temas");
 
 var cargarPagina = function(){
 	cargarTopics();
-	$("#add-form").submit(agregarTopic);
+	$("#guardar").click(agregarTopic);
 
 };
 
@@ -18,7 +18,6 @@ var cargarTopics = function () {
     //console.log(topics);
   });
 }
-
 
 var crearTopic = function (topic) {
   var contenido = topic.content;
@@ -30,14 +29,24 @@ var crearTopic = function (topic) {
 
 };
 
+/*var respuestas = topic.responses_count;
+ if(typeof(respuestas) == "undefined"){
+  	respuestas="0";
+  }*/
+
 var agregarTopic = function (e) {
   e.preventDefault();
   var autor = $("#autor").val();
+  var mensaje = $("#mensaje").val();
+  
   $.post(api.url, {
-    content: content
-  }, function (topic) {
+  	author_name	: autor,
+  	content	: mensaje,
+  }, 
+ 
+  function (topic) {
     crearTopic(topic);
-    $("#temas").modal("hide");
+    //$("#crear").modal("hide");
   });
 };
 
@@ -46,16 +55,6 @@ var plantilla = '<tr data-clave="__id__">' +
                     '<td>__autor__</td>' +
                    	'<td>__respuestas__</td>' +
                  '</tr>';
-
-
-
-
-
-
-
-
-
-
 
 
 $(document).ready(cargarPagina);
