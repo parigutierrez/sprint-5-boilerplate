@@ -18,8 +18,11 @@
       </div>
       <div class="row">
          <div class="input-field col s6">
-            <a id="filtrar" class="btn waves-effect waves-light">Filtrar Tema</a>
+          <form id="form-search">
+            <button id="filtrar" class="btn waves-effect waves-light">Filtrar Tema</button>
             <input id="filtro" type="text" class="input-field" placeholder="Filtrar"></input>
+          </form>
+            
           </div>
       </div>
     </div>
@@ -45,20 +48,21 @@
             <div class="row">
               <div class="input-field col s6">
                 <input id="autor" type="text" class="">
-                <label for="icon_prefix">Nombre
+                <label for="autor">Nombre</label>
               </div>
               <div class="input-field col s12">
-                <textarea id="mensaje" type="tel" class="">
-                </textarea>
-                <label for="icon_telephone">Mensaje
+                <input id="mensaje" type="text" class="">
+                </input>
+                <label for="mensaje">Mensaje</label>
               </div>
             </div>
+              <div class="modal-footer">
+                <button type="submit" id="guardar" href="#!" class="modal-action modal-close btn waves-effect waves-light">Crear Tema</button>
+              </div>
           </form>
         </div>
     </div>
-    <div class="modal-footer">
-      <a id="guardar" href="#!" class="modal-action modal-close btn waves-effect waves-light">Crear Tema</a>
-    </div>
+    
   </div>
 
     

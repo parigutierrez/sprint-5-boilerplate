@@ -6,16 +6,21 @@ $('.modal').modal();
 
 var $temas = $("#temas");
 var $filtrar = $("#filtrar");
+var arregloTopics = [];
 
 var cargarPagina = function(){
 	cargarTopics();
 	$("#guardar").click(agregarTopic);
+  $("#add-form").submit(agregarTopic);
 	$(document).on("click", $filtrar, filtrarTopic);
+  $("#form-search").submit(filtrarTopic);
 
 };
 
 var cargarTopics = function () {
   $.getJSON(api.url, function (topics) {
+    arregloTopics= topics;
+    //console.log(arregloTopics);
     topics.forEach(crearTopic);
     //console.log(topics);
   });
@@ -27,7 +32,7 @@ var crearTopic = function (topic) {
   var id = topic.id;
   var responses = topic.responses_count;
   var plantillaNueva = plantilla.replace("__content__",contenido).replace("__autor__",autor).replace("__respuestas__",responses).replace("__id__",id);
-  $temas.append(plantillaNueva);
+  $temas.prepend(plantillaNueva);
 
 };
 
@@ -47,23 +52,33 @@ var agregarTopic = function (e) {
   }, 
  
   function (topic) {
+    topic.responses_count=0;
     crearTopic(topic);
-    //$("#crear").modal("hide");
+    $("#crear").modal("close");
   });
+
 };
 
-var plantilla = '<tr data-clave="__id__">' +
-                    '<td>__content__</td>' + 
+var plantilla = '<tr>' +
+                    '<td><a href="verTopic.html?topic_id=__id__">__content__</a></td>' + 
                     '<td>__autor__</td>' +
                    	'<td>__respuestas__</td>' +
                  '</tr>';
 
-var filtrarTopic = function (topic) {
+var filtrarTopic = function (e) {
+e.preventDefault();
 //alert("Filtrando tema");
-var $filtro = $("#filtro").val();
-var contenido = topic.content;
+  var $filtro = $("#filtro").val().toLowerCase();
+  console.log($filtro); 
 
+  var topicsFiltrados = arregloTopics.filter(function(topics){
+    //console.log(topics.content);
+    return topics.content.toLowerCase().indexOf($filtro)>=0;
+    });
+  $temas.html("");
+  topicsFiltrados.forEach(crearTopic);
 
 };
+
 
 $(document).ready(cargarPagina);
